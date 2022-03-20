@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="js/index.js" defer></script>
+    <link rel="stylesheet" href="css/index.min.css" />
+    <title>OMDb-API</title>
+  </head>
+  <body>
+    <header class="headerContainer">
+      <h1>MovArt'</h1>
+      <div>
+        
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="container">
+          <div class="hero">
+            <h2>Retrouvez votre titre en un clic !</h2>
+            <h3>Que ce soit Séries, Films, Shows TV... On vous trouve tout</h3>
+          </div>
+          <div class="search">
+            <input id="inputSearch" class="inputSearch" placeholder="Rechercher votre titre..." type="text" id="search" name="search" onkeyup="findMovies()" onclick="findMovies()" />
+          </div>
+          <div id="listMovies" class="listMovies">
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <!-- <script>
+      let cardMovie = null;
+      let dataMovie = null;
+
+      // Réponse : data.Response
+      // Nombre :  data.totalResults
+      // Les films : data.Search
+      // Id/ Title / Poster (jpg) / Type / Year
+      function updateMovie() {
+        const btn = document.querySelector("button");
+        const input = document.querySelector("input");
+        btn.addEventListener("click", () => {
+          const searchValue = input.value;
+          const API_KEY = "f6e256e1";
+
+          if (searchValue.length <= 3) {
+            return "Merci de renseigner le champs de recherche";
+          } else {
+            fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=${API_KEY}`)
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("data", data);
+                drawMovie(data);
+              });
+          }
+        });
+      }
+
+      function drawMovie(movie) {
+  
+        const ul = document.querySelector("ul");
+
+        const btnAllDelete = document.createElement("button");
+          ul.appendChild(btnAllDelete);
+          btnAllDelete.textContent = "Supprimer la recherche";
+          btnAllDelete.addEventListener("click", () => {
+              let removing = li.removeAll();
+              removing.then(onRemoved())
+            });
+      
+        if (movie.Response === false) {
+          return "Nous n'avons pas de film correspondant à votre recherche";
+        } else if (movie.Response === null) {
+          return "Problème lors du retour de l'api";
+        } else {
+          for (i = 0; i < movie.Search.length; i++) {
+            const li = document.createElement("li");
+            const h2 = document.createElement("h2");
+            const divImg = document.createElement("div");
+            const img = document.createElement("img");
+            const span = document.createElement("span");
+            const paragraphe = document.createElement("p");
+            const btnDelete = document.createElement("button");
+            
+            li.append(h2, divImg, span, paragraphe, btnDelete);
+            divImg.appendChild(img);
+            ul.appendChild(li);
+
+            let titre = movie.Search[i].Title;
+            let poster = movie.Search[i].Poster;
+            let year = movie.Search[i].Year;
+            let type = movie.Search[i].Type;
+            let grisPoster = movie.Search[i].Type;
+
+            h2.textContent = titre;
+            if (poster == "N/A"){
+              img.setAttribute("src", "grisPoster.jpg")
+            } else {
+              img.setAttribute("src", poster);
+            }
+            span.textContent = year;
+            paragraphe.textContent = type;
+            btnDelete.textContent = "Supprimer";
+
+            btnDelete.addEventListener("click", () => {
+              li.remove();
+            });
+          }
+          
+        }
+      }
+
+      function onRemoved() {
+        console.log("Les films ont été supprimés");        
+      }
+
+      updateMovie();
+    </script> -->
+  </body>
+</html>

@@ -1,0 +1,14 @@
+.headerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
+
+    h1{
+        font-family: 'Playfair Display', serif;
+        color: white;
+        font-size: 3rem;
+        letter-spacing: 10px;
+        font-weight: 700;
+    }
+}
