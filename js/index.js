@@ -13,23 +13,24 @@ const FULL_SYNOPSIS = "full";
 const SHORT_SYNOPSIS = "short";
 const input = document.querySelector("#inputSearch");
 const listMovies = document.querySelector("#listMovies");
+const container = document.querySelector(".container");
 
 let i = 1;
 let lengthSynopsis = FULL_SYNOPSIS;
 let total;
+let filtre = "";
 
 /**
  * @description Permet de charger les films
  * @param  {String} searchValue
  */
-async function loadMovies(searchValue, searchPage = i) {
-  const URL = `https://omdbapi.com/?s=${searchValue}&page=${searchPage}&plot=${lengthSynopsis}&apikey=${API_KEY}`;
+async function loadMovies(searchValue, searchPage = i, filter = filtre) {
+  const URL = `https://omdbapi.com/?s=${searchValue}&page=${searchPage}&plot=${lengthSynopsis}&type=${filter}&apikey=${API_KEY}`;
   const response = await fetch(`${URL}`);
   const data = await response.json().catch((error) => {
     console.log(error);
   });
   total = data;
-  console.log(data);
   data.Response == "True"
     ? showListMovies(data.Search)
     : (listMovies.innerHTML = `<p>${ERROR_MESSAGE}</p>`);
@@ -41,16 +42,23 @@ async function loadMovies(searchValue, searchPage = i) {
 function findMovies() {
   i = 1;
   let search = input.value.trim();
-  let divError = document.querySelector('.totalMovies')
-  if(search.length >= MINIMUM_SEARCH_LENGTH){
-    loadMovies(search)
-  } else if(search.length < MINIMUM_SEARCH_LENGTH && search.length>=1 && !divError) {
-    let minFont = document.createElement("div")
-    minFont.classList.add('totalMovies');
+  let select = document.querySelector("select");
+  let divError = document.querySelector(".totalMovies");
+  filtre = select.value;
+  if (search.length >= MINIMUM_SEARCH_LENGTH) {
+    loadMovies(search);
+    sessionStorage.setItem("search", search);
+  } else if (
+    search.length < MINIMUM_SEARCH_LENGTH &&
+    search.length >= 1 &&
+    !divError
+  ) {
+    let minFont = document.createElement("div");
+    minFont.classList.add("totalMovies");
     minFont.innerHTML = `
       <p>${MINIMUM_SEARCH_ERROR}</p>
-    `
-    listMovies.appendChild(minFont)
+    `;
+    listMovies.appendChild(minFont);
   }
 }
 
@@ -59,15 +67,15 @@ function findMovies() {
  * @param  {Array} movies
  */
 function showListMovies(movies) {
-  if(i == 1){
+  if (i == 1) {
     listMovies.innerHTML = "";
-    let maxMovies = document.createElement("div")
-    maxMovies.classList.add('totalMovies');
+    let maxMovies = document.createElement("div");
+    maxMovies.classList.add("totalMovies");
     maxMovies.innerHTML = `
       <p>Il y a ${total.totalResults} résultats trouvés</p>
-    `
-    listMovies.appendChild(maxMovies)
-  }  
+    `;
+    listMovies.appendChild(maxMovies);
+  }
   movies.map((movie) => {
     let movieListItem = document.createElement("div");
     movieListItem.classList.add("movieListItem");
@@ -111,6 +119,11 @@ function loadOneMovie() {
  */
 function showMovieDetails(details) {
   listMovies.innerHTML = `
+    <div class="btnReturn">
+      <button id="btnReturnToResult">
+        Retourner à mes résultats
+      </button>
+    </div>
     <div class="cardMovie">
         <div class="cardMovieImg">
             <img src = "${
@@ -176,21 +189,28 @@ function showMovieDetails(details) {
         </div>
     </div>
     `;
+  returnResults();
 }
 
-
-function LazyLoading(e){
+function LazyLoading(e) {
   e.preventDefault();
-  const cardMovie = document.querySelector('.cardMovie')
-  const movieListItem = document.querySelector('.movieListItem')
-  if (window.scrollY + window.innerHeight == document.documentElement.scrollHeight && (!cardMovie && movieListItem)) {
+  const cardMovie = document.querySelector(".cardMovie");
+  const movieListItem = document.querySelector(".movieListItem");
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  if (clientHeight + scrollTop >= scrollHeight && !cardMovie && movieListItem) {
     i++;
-    console.log(total);
-    if(i<(total.totalResults)/10){
-      console.log(i)
+    if (i < total.totalResults / 10) {
       loadMovies(input.value, i);
     }
-}}
+  }
+}
 
 window.addEventListener("scroll", (e) => LazyLoading(e));
-
+function returnResults() {
+  let btn = document.querySelector("#btnReturnToResult");
+  let search = sessionStorage.getItem("search");
+  btn.addEventListener("click", () => {
+    input.value = search;
+    loadMovies(search);
+  });
+}

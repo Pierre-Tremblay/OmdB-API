@@ -1,12 +1,26 @@
 // Font
 
-@import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 //  font-family: 'Chivo', sans-serif;
 //  font-family: 'Playfair Display', serif;
-body{
-   background: linear-gradient(180deg, rgba(20, 0, 255, 0) 0%, rgba(20, 0, 255, 0) 0%, rgba(99, 88, 220, 0) 0%, rgba(253, 253, 253, 0.0070922) 0.01%, #458BED 0.02%, #21549D 35.42%, #123C85 55.21%, #061A56 83.33%) no-repeat;
-   min-height: 100vh;
-   font-family: 'Chivo', sans-serif;
+body {
+  background: linear-gradient(
+      180deg,
+      rgba(20, 0, 255, 0) 0%,
+      rgba(20, 0, 255, 0) 0%,
+      rgba(99, 88, 220, 0) 0%,
+      rgba(253, 253, 253, 0.0070922) 0.01%,
+      #458bed 0.02%,
+      #21549d 35.42%,
+      #123c85 55.21%,
+      #061a56 83.33%
+    )
+    no-repeat;
+  min-height: 100vh;
+  height: 100vh;
+  font-family: "Chivo", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #061a56;
 }
