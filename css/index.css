@@ -170,6 +170,38 @@ body {
   margin: 0 12%;
 }
 
+.listMovies .btnAlign {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 100%;
+}
+
+.listMovies .btnAlign #btnReturnToResult {
+  width: 100%;
+  height: 2rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #dbdbdb00;
+  padding: 0.2rem 1rem;
+  font-size: 1.2rem;
+  outline: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  margin-right: 2%;
+  margin-bottom: 10%;
+  color: #fff;
+}
+
+.listMovies .btnAlign #btnReturnToResult:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0);
+  color: #fff;
+}
+
 .listMovies .totalMovies {
   width: 100%;
   text-align: center;

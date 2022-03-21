@@ -105,7 +105,7 @@ function loadOneMovie() {
       input.value = "";
       listMovies.innerHTML = "";
       const result = await fetch(
-        `http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=${API_KEY}`
+        `https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=${API_KEY}`
       );
       const movieDetails = await result.json();
       showMovieDetails(movieDetails);
@@ -119,10 +119,12 @@ function loadOneMovie() {
  */
 function showMovieDetails(details) {
   listMovies.innerHTML = `
-    <div class="btnReturn">
-      <button id="btnReturnToResult">
-        Retourner à mes résultats
-      </button>
+    <div class="btnAlign">
+      <div class="btnReturn">
+        <button id="btnReturnToResult">
+          <- Retourner à mes résultats
+        </button>
+      </div>
     </div>
     <div class="cardMovie">
         <div class="cardMovieImg">
