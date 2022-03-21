@@ -238,7 +238,7 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
-  border-radius: 1rem;
+  border-radius: 2%;
   cursor: pointer;
   height: auto;
   -webkit-transition: all 0.3s ease-in-out;
