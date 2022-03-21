@@ -11,7 +11,9 @@
   </head>
   <body>
     <header class="headerContainer">
-      <h1>MovArt'</h1>
+      <h1>
+        <a href="/"> MovArt'</a>
+      </h1>
       <div></div>
     </header>
 
@@ -34,26 +36,10 @@
               onclick="findMovies()"
             />
             <select class="filterSearch" onchange="findMovies()">
-              <option class="filterSearch"  value="">
-                Tout
-              </option>
-              <option class="filterSearch"  value="movie">
-                Films
-              </option>
-              <option
-                class="filterSearch"
-                
-                value="series"
-              >
-                Série
-              </option>
-              <option
-                class="filterSearch"
-                
-                value="episode"
-              >
-                Shows TV
-              </option>
+              <option class="filterSearch" value="">Tout</option>
+              <option class="filterSearch" value="movie">Films</option>
+              <option class="filterSearch" value="series">Série</option>
+              <option class="filterSearch" value="episode">Shows TV</option>
             </select>
           </div>
           <div id="listMovies" class="listMovies"></div>
