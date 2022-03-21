@@ -5,7 +5,7 @@
  */
 
 // Déclaration des constantes et variables principales
-const API_KEY = "546d65c4";
+const API_KEY = "21a60aa1";
 const ERROR_MESSAGE = "Aucun film n'a été trouvé";
 const MINIMUM_SEARCH_LENGTH = 3;
 const MINIMUM_SEARCH_ERROR = "Veuillez saisir au moins 3 caractères";
@@ -14,34 +14,44 @@ const SHORT_SYNOPSIS = "short";
 const input = document.querySelector("#inputSearch");
 const listMovies = document.querySelector("#listMovies");
 
-let searchPage = 1;
+let i = 1;
 let lengthSynopsis = FULL_SYNOPSIS;
+let total;
 
 /**
  * @description Permet de charger les films
  * @param  {String} searchValue
  */
-async function loadMovies(searchValue) {
+async function loadMovies(searchValue, searchPage = i) {
   const URL = `https://omdbapi.com/?s=${searchValue}&page=${searchPage}&plot=${lengthSynopsis}&apikey=${API_KEY}`;
   const response = await fetch(`${URL}`);
   const data = await response.json().catch((error) => {
     console.log(error);
   });
+  total = data;
   console.log(data);
   data.Response == "True"
     ? showListMovies(data.Search)
     : (listMovies.innerHTML = `<p>${ERROR_MESSAGE}</p>`);
-    
 }
 
 /**
  * @description Permet de récupérer les films selon la recherche
  */
 function findMovies() {
+  i = 1;
   let search = input.value.trim();
-  search.length >= MINIMUM_SEARCH_LENGTH
-    ? loadMovies(search)
-    : console.log(MINIMUM_SEARCH_ERROR);
+  let divError = document.querySelector('.totalMovies')
+  if(search.length >= MINIMUM_SEARCH_LENGTH){
+    loadMovies(search)
+  } else if(search.length < MINIMUM_SEARCH_LENGTH && search.length>=1 && !divError) {
+    let minFont = document.createElement("div")
+    minFont.classList.add('totalMovies');
+    minFont.innerHTML = `
+      <p>${MINIMUM_SEARCH_ERROR}</p>
+    `
+    listMovies.appendChild(minFont)
+  }
 }
 
 /**
@@ -49,7 +59,15 @@ function findMovies() {
  * @param  {Array} movies
  */
 function showListMovies(movies) {
-  listMovies.innerHTML = "";
+  if(i == 1){
+    listMovies.innerHTML = "";
+    let maxMovies = document.createElement("div")
+    maxMovies.classList.add('totalMovies');
+    maxMovies.innerHTML = `
+      <p>Il y a ${total.totalResults} résultats trouvés</p>
+    `
+    listMovies.appendChild(maxMovies)
+  }  
   movies.map((movie) => {
     let movieListItem = document.createElement("div");
     movieListItem.classList.add("movieListItem");
@@ -67,7 +85,6 @@ function showListMovies(movies) {
         `;
     listMovies.appendChild(movieListItem);
   });
-
   loadOneMovie();
 }
 /**
@@ -84,6 +101,7 @@ function loadOneMovie() {
       );
       const movieDetails = await result.json();
       showMovieDetails(movieDetails);
+      i = 1;
     });
   });
 }
@@ -113,14 +131,15 @@ function showMovieDetails(details) {
                     ? details.Year
                     : "Aucune information trouvée"
                 }</li>
-                <li>Notes : ${
-                  details.Rated != "N/A"
-                    ? details.Rated
-                    : "Aucune information trouvée"
-                }</li>
+                
                 <li>Sortie : ${
                   details.Released != "N/A"
                     ? details.Released
+                    : "Aucune information trouvée"
+                }</li>
+                <li>Âge minimum recommandé : ${
+                  details.Rated != "N/A"
+                    ? details.Rated
                     : "Aucune information trouvée"
                 }</li>
             </ul>
@@ -157,5 +176,21 @@ function showMovieDetails(details) {
         </div>
     </div>
     `;
-    
 }
+
+
+function LazyLoading(e){
+  e.preventDefault();
+  const cardMovie = document.querySelector('.cardMovie')
+  const movieListItem = document.querySelector('.movieListItem')
+  if (window.scrollY + window.innerHeight == document.documentElement.scrollHeight && (!cardMovie && movieListItem)) {
+    i++;
+    console.log(total);
+    if(i<(total.totalResults)/10){
+      console.log(i)
+      loadMovies(input.value, i);
+    }
+}}
+
+window.addEventListener("scroll", (e) => LazyLoading(e));
+

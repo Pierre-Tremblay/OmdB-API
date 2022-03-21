@@ -16,7 +16,6 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 
@@ -119,7 +118,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   height: 20%;
-  padding-top: 2rem;
+  padding: 2rem 0;
 }
 
 .search .inputSearch {
@@ -145,13 +144,15 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 12%;
 }
 
 .listMovies .movieListItem {
-  padding-top: 2rem;
   position: relative;
+  margin: 1% 1%;
 }
 
 .listMovies .movieListItem:hover .movieListItemInfos {
@@ -199,5 +200,27 @@ body {
   font-weight: 200;
   font-size: 15px;
   padding-top: 10px;
+}
+
+.cardMovie {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1% 0;
+}
+
+.cardMovie .cardMovieDescription {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  color: white;
+  padding-left: 3%;
+  font-family: 'Chivo';
 }
 /*# sourceMappingURL=index.css.map */

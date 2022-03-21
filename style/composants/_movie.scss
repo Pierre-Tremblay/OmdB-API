@@ -1,0 +1,13 @@
+.cardMovie{
+    display: flex;
+    margin: 1% 0;
+    
+    .cardMovieDescription{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        color: white;
+        padding-left: 3%;
+        font-family: 'Chivo';
+    }
+}

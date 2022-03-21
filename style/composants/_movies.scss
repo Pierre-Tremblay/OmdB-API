@@ -1,10 +1,11 @@
 .listMovies {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    margin: 0 12%;
     .movieListItem {
-        padding-top: 2rem;
         position: relative;
+        margin: 1% 1%;
         &:hover{
             .movieListItemInfos{
                 position: absolute;
