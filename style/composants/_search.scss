@@ -37,3 +37,22 @@
   }
   
 }
+
+@media screen and (max-width: 768px) {
+  .search {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 0;
+    margin-top: 10%;
+    .inputSearch {
+      width: 70%;
+      margin-bottom: 5%;
+    }
+    .filterSearch {
+      width: 70%;
+      margin-bottom: 10%;
+    }
+  }
+}

@@ -92,6 +92,9 @@ function showListMovies(movies) {
         movie.Poster != "N/A"
             ? movie.Poster
             : "./img/notavailable.png"}">
+            ${(movie.Type == "series") ? `<div class="movieSerie">Série</div>` : ''}
+            ${(movie.Type == "movie") ? `<div class="movieFilm">Film</div>` : ''}
+            ${(movie.Type == "episode") ? `<div class="movieShowTV">Show TV</div>` : ''}
         </div>
         <div class="movieListItemInfos">
             <h1>${movie.Title}</h1>
