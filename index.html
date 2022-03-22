@@ -1,52 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <script src="js/index.js" defer></script>
-    <link rel="stylesheet" href="css/index.min.css" />
-    <title>OMDb-API</title>
-  </head>
-  <body>
-    <header class="headerContainer">
-      <h1>
-        <a href="/OmdB-API/">Mov'Art</a>
-      </h1>
-      <div></div>
-    </header>
+        <script src="js/index.js" defer></script>
+        <link rel="stylesheet" href="css/index.min.css"/>
+        <title>OMDb-API</title>
+    </head>
+    <body>
+        <header class="headerContainer">
+            <h1>
+                <a href="/OmdB-API/">Mov'Art</a>
+            </h1>
+        </header>
 
-    <main>
-      <section>
-        <div class="container">
-          <div class="hero">
-            <h2>Retrouvez votre titre en un clic !</h2>
-            <h3>Que ce soit Séries, Films, Shows TV... On vous trouve tout</h3>
-          </div>
-          <div class="search">
-            <input
-              id="inputSearch"
-              class="inputSearch"
-              placeholder="Rechercher votre titre..."
-              type="text"
-              id="search"
-              name="search"
-              onkeyup="findMovies()"
-              onclick="findMovies()"
-            />
-            <select class="filterSearch" onchange="findMovies()">
-              <option class="filterSearch" value="">Tout</option>
-              <option class="filterSearch" value="movie">Films</option>
-              <option class="filterSearch" value="series">Série</option>
-              <option class="filterSearch" value="episode">Shows TV</option>
-            </select>
-          </div>
-          <div id="listMovies" class="listMovies"></div>
-        </div>
-      </section>
-    </main>
+        <main>
+            <section>
+                <div class="container">
+                    <div class="hero">
+                        <h2>Retrouvez votre titre en un clic !</h2>
+                        <h3>Que ce soit Séries, Films, Shows TV... On vous trouve tout</h3>
+                    </div>
+                    <div class="search">
+                        <input
+                            id="inputSearch"
+                            class="inputSearch"
+                            placeholder="Rechercher votre titre..."
+                            type="text"
+                            name="search"
+                            onkeyup="findMovies()"
+                            onclick="findMovies()"/>
+                        <select class="filterSearch" onchange="findMovies()">
+                            <option class="filterSearch" value="">Tout</option>
+                            <option class="filterSearch" value="movie">Films</option>
+                            <option class="filterSearch" value="series">Série</option>
+                            <option class="filterSearch" value="episode">Shows TV</option>
+                        </select>
+                    </div>
+                    <div id="listMovies" class="listMovies"></div>
+                </div>
+            </section>
+        </main>
 
-    <footer></footer>
-  </body>
+        <footer></footer>
+    </body>
 </html>
