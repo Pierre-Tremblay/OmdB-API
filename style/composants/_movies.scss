@@ -37,13 +37,11 @@
     }
     .movieListItem {
         display: flex;
-
         flex-direction: column;
         margin: 1%;
         align-items: center;
         width: 300px;
         position: relative;
-
         .cardMovieImg {
             margin-bottom: 5%;
             img {
@@ -97,7 +95,6 @@
                 }
             }
         }
-
         .movieListItemInfos {
             align-items: center;
             height: 100%;
@@ -105,7 +102,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .movieListItemInfos {
             transition: opacity 0.6s ease-in-out;
             h1,

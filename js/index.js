@@ -49,7 +49,6 @@ function findMovies() {
     let select = document.querySelector("select");
     let divError = document.querySelector(".totalMovies");
     filtre = select.value;
-    console.log(filtre);
     if (search.length >= MINIMUM_SEARCH_LENGTH) {
         loadMovies(search);
         sessionStorage.setItem("search", search);

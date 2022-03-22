@@ -1,7 +1,6 @@
 .cardMovie{
     display: flex;
     margin: 1% 0;
-    
     .cardMovieDescription{
         display: flex;
         flex-direction: column;
@@ -12,7 +11,6 @@
     }
     
 }
-
 @media screen and (max-width: 768px) {
     .cardMovie{
         flex-direction: column;
